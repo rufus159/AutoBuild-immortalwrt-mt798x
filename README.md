@@ -2,4 +2,6 @@
 
 主要硬件：Bananapi BPi-R3 Mini
 
-配置文件目录:config
+配置文件目录：config
+
+主要是日常做一些5G 模组测试

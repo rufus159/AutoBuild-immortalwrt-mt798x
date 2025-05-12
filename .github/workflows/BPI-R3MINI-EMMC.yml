@@ -1,4 +1,4 @@
-name: mt7981-ax3000-mtwifi-cfg 闭源固件
+name: BPI-R3MINI-EMMC 闭源固件
 
 #permissions: write-all
 #开启写权限，防止无法上传到release
@@ -14,11 +14,11 @@ env:
   UPLOAD_FIRMWARE: true
   UPLOAD_RELEASE: true
   TZ: Asia/Shanghai
-  CONFIG_FILE: mt7981-ax3000.config
+  CONFIG_FILE: /config/mt7986-ax4200-bpir3_mini.config
 
 jobs:
   build:
-    name: 编译mt7981-ax3000-mtwifi-cfg固件
+    name: 编译BPI-R3MINI-EMMC 闭源固件
     runs-on: ubuntu-22.04
 
     steps:
@@ -111,16 +111,16 @@ jobs:
       uses: actions/upload-artifact@main
       if: env.UPLOAD_FIRMWARE == 'true' && steps.organize.outputs.status == 'success' && !cancelled()
       with:
-        name: mt7981-ax3000-mtwifi-cfg
+        name: BPI-R3MINI-EMMC
         path: ${{ env.FIRMWARE }}
 
     - name: 生成release标签
       id: tag
       if: env.UPLOAD_RELEASE == 'true' && steps.compile.outputs.status == 'success' && !cancelled()
       run: |
-        echo "release_tag=$(date +"%Y.%m.%d-%H%M")-ax3000-mtwifi-cfg">> $GITHUB_OUTPUT
+        echo "release_tag=$(date +"%Y.%m.%d-%H%M")-BPI-R3MINI-EMMC">> $GITHUB_OUTPUT
         touch release.txt
-        echo -e "immortalwrt-mt798x-ax3000-mtwifi-cfg 源码版本" >> release.txt
+        echo -e "immortalwrt-mt798x-BPI-R3MINI-EMMC 源码版本" >> release.txt
         echo "📥 固件下载" >> release.txt
         echo "status=success" >>$GITHUB_OUTPUT
 
