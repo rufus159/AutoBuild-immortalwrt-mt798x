@@ -19,3 +19,10 @@
 
 # 安装包
 ./scripts/feeds install -a 
+
+echo >> feeds.conf.default
+echo 'src-git qmodem https://github.com/FUjr/QModem.git;main' >> feeds.conf.default
+
+./scripts/feeds update qmodem
+
+./scripts/feeds install -a -f -p qmodem
