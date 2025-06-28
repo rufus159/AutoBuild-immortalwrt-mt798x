@@ -1,4 +1,4 @@
-源码地址：https://github.com/padavanonly/immortalwrt-mt798x-24.10
+源码地址：[https://github.com/padavanonly/immortalwrt-mt798x-24.10](https://github.com/padavanonly/immortalwrt-mt798x-6.6/tree/openwrt-24.10-6.6)
 
 硬件：Bananapi BPi-R3 Mini
 
