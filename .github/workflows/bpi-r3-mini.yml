@@ -1,4 +1,4 @@
-name: mt7986-ax4200-mtwifi-cfg 闭源固件
+name: bpi-r3-mini 开源固件
 
 #permissions: write-all
 #开启写权限，防止无法上传到release
@@ -9,16 +9,16 @@ on:
 #    - cron: 0 16 * * *
 
 env:
-  REPO_URL: https://github.com/padavanonly/immortalwrt-mt798x-6.6
-  REPO_BRANCH: openwrt-24.10-6.6
+  REPO_URL: https://github.com/immortalwrt/immortalwrt
+  REPO_BRANCH: openwrt-24.10
   UPLOAD_FIRMWARE: true
   UPLOAD_RELEASE: true
   TZ: Asia/Shanghai
-  CONFIG_FILE: mt7986-ax4200-bpir3_mini.config
+  CONFIG_FILE: $GITHUB_WORKSPACE/bpi-r3-mini/.config
 
 jobs:
   build:
-    name: 编译mt7986-ax4200-mtwifi-cfg固件
+    name: 编译 bpi-r3-mini 开源固件
     runs-on: ubuntu-22.04
 
     steps:
@@ -67,13 +67,13 @@ jobs:
       run: |
         chmod +x diy-feeds.sh
         cd openwrt
-        $GITHUB_WORKSPACE/diy-feeds.sh
+        $GITHUB_WORKSPACE/bpi-r3-mini/diy-feeds.sh
 
     - name: 自定义.config设置
       run: |
         chmod +x diy-config.sh
         cd openwrt
-        $GITHUB_WORKSPACE/diy-config.sh
+        $GITHUB_WORKSPACE/bpi-r3-mini/diy-config.sh
         
     - name: 下载软件包
       id: package
@@ -111,16 +111,16 @@ jobs:
       uses: actions/upload-artifact@main
       if: env.UPLOAD_FIRMWARE == 'true' && steps.organize.outputs.status == 'success' && !cancelled()
       with:
-        name: mt7986-ax4200-mtwifi-cfg
+        name: bpi-r3-mini
         path: ${{ env.FIRMWARE }}
 
     - name: 生成release标签
       id: tag
       if: env.UPLOAD_RELEASE == 'true' && steps.compile.outputs.status == 'success' && !cancelled()
       run: |
-        echo "release_tag=$(date +"%Y.%m.%d-%H%M")-mt7986-ax4200-mtwifi-cfg">> $GITHUB_OUTPUT
+        echo "release_tag=$(date +"%Y.%m.%d-%H%M")-bpi-r3-mini">> $GITHUB_OUTPUT
         touch release.txt
-        echo -e "immortalwrt-mt7986-ax4200-mtwifi-cfg 源码版本" >> release.txt
+        echo -e "immortalwrt-bpi-r3-mini 开源固件" >> release.txt
         echo "📥 固件下载" >> release.txt
         echo "status=success" >>$GITHUB_OUTPUT
 

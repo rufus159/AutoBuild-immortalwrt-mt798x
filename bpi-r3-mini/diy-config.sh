@@ -15,4 +15,4 @@
 
 # 添加自定义配置
 rm -f .config*
-cat $GITHUB_WORKSPACE/config/bpi-r3-mini.config > .config
+cat $GITHUB_WORKSPACE/bpi-r3-mini/.config > .config
