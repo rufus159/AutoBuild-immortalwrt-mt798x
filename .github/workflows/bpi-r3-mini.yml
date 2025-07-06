@@ -111,7 +111,7 @@ jobs:
       uses: actions/upload-artifact@main
       if: env.UPLOAD_FIRMWARE == 'true' && steps.organize.outputs.status == 'success' && !cancelled()
       with:
-        name: mt7981-ax3000-mtwifi-cfg
+        name: mt7986-ax4200-mtwifi-cfg
         path: ${{ env.FIRMWARE }}
 
     - name: 生成release标签
