@@ -65,13 +65,13 @@ jobs:
         
     - name: 自定义 & 更新 & 安装 feeds
       run: |
-        chmod +x diy-feeds.sh
+        chmod +x $GITHUB_WORKSPACE/bpi-r3-mini/diy-feeds.sh
         cd openwrt
         $GITHUB_WORKSPACE/bpi-r3-mini/diy-feeds.sh
 
     - name: 自定义.config设置
       run: |
-        chmod +x diy-config.sh
+        chmod +x $GITHUB_WORKSPACE/bpi-r3-mini/diy-config.sh
         cd openwrt
         $GITHUB_WORKSPACE/bpi-r3-mini/diy-config.sh
         
