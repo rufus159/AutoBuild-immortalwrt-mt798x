@@ -13,7 +13,8 @@
 #rm -rf feeds/packages/lang/golang
 #git clone https://github.com/kenzok8/golang feeds/packages/lang/golang
 
-# 更新包源
+
+# 更新包
 ./scripts/feeds update -a
 # 安装包
 ./scripts/feeds install -a 
@@ -21,7 +22,9 @@
 # 添加自定义源，此包为5G模组,强制使用该源的驱动
 echo >> feeds.conf.default
 echo 'src-git qmodem https://github.com/FUjr/QModem.git;main' >> feeds.conf.default
+
 ./scripts/feeds update qmodem
+
 ./scripts/feeds install -a -f -p qmodem
 
 
